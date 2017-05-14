@@ -107,3 +107,37 @@ Sendex.combo.Newsletter = function(config) {
 };
 Ext.extend(Sendex.combo.Newsletter,MODx.combo.ComboBox);
 Ext.reg('sendex-combo-newsletter',Sendex.combo.Newsletter);
+
+
+Sendex.combo.UserGroupSx = function(config) {
+	config = config || {};
+	Ext.applyIf(config,{
+		name: 'usergroupsx'
+		,fieldLabel: _('sendex_usergroupsx')
+		,hiddenName: config.name || 'usergroupsx'
+		,displayField: 'name'
+		,valueField: 'id'
+		,anchor: '99%'
+		,fields: ['id','name','description']
+		,pageSize: 20
+		,url: Sendex.config.connector_url
+		,editable: true
+		,allowBlank: true
+		,emptyText: _('sendex_select_usergroupsx')
+		,baseParams: {
+			action: 'mgr/usergroup/getlist'
+			,combo: 1
+		}
+		,tpl: new Ext.XTemplate(
+			'<tpl for=".">\
+				<div class="x-combo-list-item">\
+					<sup>({id})</sup> <strong>{name}</strong><br/>{description}\
+				</div>\
+			</tpl>'
+			,{compiled: true}
+		)
+	});
+	Sendex.combo.UserGroupSx.superclass.constructor.call(this,config);
+};
+Ext.extend(Sendex.combo.UserGroupSx,MODx.combo.ComboBox);
+Ext.reg('sendex-combo-usergroupsx',Sendex.combo.UserGroupSx);

@@ -21,15 +21,14 @@ if ($object->xpdo) {
 				$manager->createObjectContainer($tmp);
 			}
 
-/*
-			$level = $modx->getLogLevel();
+
+			/*$level = $modx->getLogLevel();
 			$modx->setLogLevel(xPDO::LOG_LEVEL_FATAL);
 
-			$manager->addField('sxUserGroup', 'name');
-			$manager->addField('sxUserGroup', 'description');
+			$manager->addField('sxUser', 'usergroup_id');
 
-			$modx->setLogLevel($level);
-*/
+			$modx->setLogLevel($level);*/
+
 			break;
 
 		case xPDOTransport::ACTION_UPGRADE:

@@ -81,9 +81,8 @@
 
 
 	<object class="sxUser" table="sendex_user" extends="xPDOSimpleObject">
-
+		<field key="usergroup_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
 		<field key="email" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
-		<field key="group" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
 		<field key="status" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="true" default="1" />
 
 	</object>

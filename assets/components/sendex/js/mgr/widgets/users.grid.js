@@ -6,9 +6,10 @@ Sendex.grid.Users = function(config) {
 		id: 'sendex-grid-users'
 		,url: Sendex.config.connector_url
 		,baseParams: {
-			action: 'mgr/user/getlist'
+			action: 'mgr/user/getlist',
+			name: config.name
 		}
-		,fields: ['id','email','group','status']
+		,fields: ['id','email','name','status']
 		,autoHeight: true
 		,paging: true
 		,remoteSort: true
@@ -16,7 +17,7 @@ Sendex.grid.Users = function(config) {
 		,columns: [
 			{header: _('sendex_user_id'), sortable: true, dataIndex: 'id',width: 50}
 			,{header: _('sendex_user_email'), sortable: true, dataIndex: 'email',width: 75}
-			,{header: _('sendex_user_group'), sortable: true, dataIndex: 'group',width: 100}
+			,{header: _('sendex_user_group'), sortable: true, dataIndex: 'name',width: 100}
 			,{header: _('sendex_user_status'), sortable: true, dataIndex: 'status',width: 100}
 		],
 		tbar: [{
@@ -202,7 +203,7 @@ Sendex.window.CreateUser = function(config) {
 		,action: 'mgr/user/create'
 		,fields: [
 			{xtype: 'textfield',fieldLabel: _('sendex_user_email'),name: 'email',id: 'sendex-'+this.ident+'-email',anchor: '100%'}
-			,{xtype: 'textfield',fieldLabel: _('sendex_user_group'),name: 'group',id: 'sendex-'+this.ident+'-group',anchor: '100%'}
+			,{xtype: 'sendex-combo-usergroupsx',fieldLabel: _('sendex_user_group'),name: 'usergroup_id',id: 'sendex-'+this.ident+'-usergroup_id',anchor: '100%'}
 		]
 		,keys: [{key: Ext.EventObject.ENTER,shift: true,fn: function() {this.submit() },scope: this}]
 	});

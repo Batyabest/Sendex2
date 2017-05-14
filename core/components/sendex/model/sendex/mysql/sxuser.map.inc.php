@@ -6,21 +6,22 @@ $xpdo_meta_map['sxUser']= array (
   'extends' => 'xPDOSimpleObject',
   'fields' => 
   array (
+    'usergroup_id' => 0,
     'email' => '',
-    'group' => '',
     'status' => 1,
   ),
   'fieldMeta' => 
   array (
-    'email' => 
+    'usergroup_id' => 
     array (
-      'dbtype' => 'varchar',
-      'precision' => '255',
-      'phptype' => 'string',
-      'null' => true,
-      'default' => '',
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => false,
+      'default' => 0,
     ),
-    'group' => 
+    'email' => 
     array (
       'dbtype' => 'varchar',
       'precision' => '255',
