@@ -9,6 +9,7 @@ class sxNewsletter extends xPDOSimpleObject {
 	public function addQueues() {
 		$template = null;
 		$params = $this->toArray();
+
 		/** @var modParser $parser */
 		$parser = $this->xpdo->getService('parser', $this->xpdo->getOption('parser_class', null, 'modParser'), $this->xpdo->getOption('parser_class_path', null, ''));
 
@@ -33,19 +34,22 @@ class sxNewsletter extends xPDOSimpleObject {
 			);
 
 			// Get email from user profile, if possible
-			/** @var modUser $user */
-			if ($subscriber->get('user_id') && $user = $this->xpdo->getObject('modUser', $subscriber->user_id)) {
-				/** @var modUserProfile $profile */
-				$profile = $user->getOne('Profile');
+			/** @var sxUser $user */
+//			if ($subscriber->get('user_id') && $user = $this->xpdo->getObject('sxUser', $subscriber->user_id)) {
+//				/** @var modUserProfile $profile */
+//			//	$profile = $user->getOne('sxUser');
+//				/*print "<pre>";
+//				print_r($subscriber->toArray());
+//				print "</pre>";*/
+//				// Skip inactive users
+//				if (!$user->active || $profile->blocked) {continue;}
+//				// Add user fields
+//				$scriptProperties['user'] = $user->toArray();
+//				$scriptProperties['profile'] = $profile->toArray();
+//				$scriptProperties['email'] = $subscriber->get('email');
+//			}
 
-				// Skip inactive users
-				if (!$user->active || $profile->blocked) {continue;}
-				// Add user fields
-				$scriptProperties['user'] = $user->toArray();
-				$scriptProperties['profile'] = $profile->toArray();
-			}
-
-			$email = $subscriber->email;
+			$email = $subscriber->get('email');
 			$subject = !empty($this->email_subject) ? $this->email_subject : 'No subject';
 			$from = !empty($this->email_from) ? $this->email_from : $this->xpdo->getOption('emailsender');
 			$from_name = !empty($this->email_from_name) ? $this->email_from_name : $this->xpdo->getOption('site_name');

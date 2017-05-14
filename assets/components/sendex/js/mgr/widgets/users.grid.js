@@ -18,7 +18,7 @@ Sendex.grid.Users = function(config) {
 			{header: _('sendex_user_id'), sortable: true, dataIndex: 'id',width: 50}
 			,{header: _('sendex_user_email'), sortable: true, dataIndex: 'email',width: 75}
 			,{header: _('sendex_user_group'), sortable: true, dataIndex: 'name',width: 100}
-			,{header: _('sendex_user_status'), sortable: true, dataIndex: 'status',width: 100}
+			,{header: _('sendex_user_status'), sortable: false, dataIndex: 'status',width: 100}
 		],
 		tbar: [{
 				text: '<i class="' + (MODx.modx23 ? 'icon icon-plus' : 'fa fa-plus') + '"></i> ' + _('sendex_user_btn_create'),
@@ -222,38 +222,11 @@ Sendex.window.ImportUser = function(config) {
 		,autoHeight: true
 		,width: 650
 		,url: Sendex.config.connector_url
-		,action: 'mgr/user/create'
+		,action: 'mgr/user/import'
 		,fields: [
-			{
-				layout:'column'
-				,border: false
-				,anchor: '100%'
-				,items: [{
-					columnWidth: .5
-					,layout: 'form'
-					,defaults: { msgTarget: 'under' }
-					,border:false
-					,style: {margin: '0 10px 0 0'}
-					,items: [
-						{xtype: 'modx-combo-browser',fieldLabel: _('sendex_user_import_file'),name: 'import_source',id: 'sendex-'+this.ident+'-import_source',anchor: '100%'}
-						,{xtype: 'textfield',fieldLabel: _('sendex_newsletter_email_reply'),name: 'email_reply',id: 'sendex-'+this.ident+'-email_reply',anchor: '100%'}
-						,{xtype: 'combo-boolean',fieldLabel: _('sendex_newsletter_active'),name: 'active',hiddenName: 'active',id: 'sendex-'+this.ident+'-active',anchor: '50%'}
-					]
-				},{
-					columnWidth: .5
-					,layout: 'form'
-					,defaults: { msgTarget: 'under' }
-					,border:false
-					,style: {margin: 0}
-					,items: [
-						{xtype: 'textfield',fieldLabel: _('sendex_user_group'),name: 'group',id: 'sendex-'+this.ident+'-group',anchor: '100%'}
-						,{xtype: 'textfield',fieldLabel: _('sendex_newsletter_email_from_name'),name: 'email_from_name',id: 'sendex-'+this.ident+'-email_from_name',anchor: '100%'}
-						,{xtype: 'modx-combo-browser',fieldLabel: _('sendex_newsletter_image'),name: 'image',id: 'sendex-'+this.ident+'-image',anchor: '100%'}
-					]
-				}]
-			}
-			,{xtype: 'textarea',fieldLabel: _('sendex_newsletter_description'),name: 'description',id: 'sendex-'+this.ident+'-description',height: 75,anchor: '100%'}
-		]
+				{xtype: 'modx-combo-browser',fieldLabel: _('sendex_user_import_file'),name: 'import_source',id: 'sendex-'+this.ident+'-import_source',anchor: '100%'}
+				,{xtype: 'sendex-combo-usergroupsx',fieldLabel: _('sendex_user_group'),name: 'usergroup_id',id: 'sendex-'+this.ident+'-usergroup_id',anchor: '100%'}
+			]
 		,keys: [{key: Ext.EventObject.ENTER,shift: true,fn: function() {this.submit() },scope: this}]
 	});
 	Sendex.window.ImportUser.superclass.constructor.call(this,config);

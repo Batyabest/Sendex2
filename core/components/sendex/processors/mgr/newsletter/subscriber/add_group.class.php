@@ -3,7 +3,7 @@
  * Add a Subscribers from the UserGroup
  */
 class sxSubscriberAddGroupProcessor extends modObjectProcessor {
-	public $classKey = 'modUser';
+	public $classKey = 'sxUser';
 	public $languageTopics = array('sendex');
 	public $permission = '';
 
@@ -21,13 +21,17 @@ class sxSubscriberAddGroupProcessor extends modObjectProcessor {
 		$errors = array();
 
 		$c = $this->modx->newQuery($this->classKey);
-		$c->select($this->modx->getSelectColumns($this->classKey, $this->classKey, '', array('id', 'username')));
-		$c->innerJoin('modUserGroupMember', 'UserGroupMembers');
-		$c->innerJoin('modUserGroup', 'UserGroup', '`UserGroupMembers`.`user_group` = `UserGroup`.`id` AND `UserGroup`.`id` = ' . $group_id);
-		$c->leftJoin('sxSubscriber', 'Subscriber', '`Subscriber`.`user_id` = `modUser`.`id` AND `Subscriber`.`newsletter_id` = ' . $newsletter_id);
+		$c->select($this->modx->getSelectColumns($this->classKey, $this->classKey, '', array('id', 'email')));
+		$c->innerJoin('sxUserGroup', 'sxUserGroup', '`sxUserGroup`.`id` = `sxUser`.`usergroup_id` AND `sxUserGroup`.`id` = ' . $group_id);
+		$c->leftJoin('sxSubscriber', 'Subscriber', '`Subscriber`.`user_id` = `sxUser`.`id` AND `Subscriber`.`newsletter_id` = ' . $newsletter_id);
+		$c->select($this->modx->getSelectColumns('sxUserGroup', 'sxUserGroup', '',array('name')));
 		$c->where(array(
 			'Subscriber.user_id' => null
 		));
+
+		//$c->prepare();
+		//$this->modx->log(1 , print_r($c->toSQL() ,1));
+
 		if ($c->prepare() && $c->stmt->execute()) {
 			while ($row = $c->stmt->fetch(PDO::FETCH_ASSOC)) {
 				/** @var modProcessorResponse $response */
@@ -36,7 +40,8 @@ class sxSubscriberAddGroupProcessor extends modObjectProcessor {
 					'mgr/newsletter/subscriber/create',
 					array(
 						'newsletter_id' => $newsletter_id,
-						'user_id' => $row['id']
+						'user_id' => $row['id'],
+						'email' => $row['email']
 					),
 					array(
 						'processors_path' => MODX_CORE_PATH . 'components/sendex/processors/'

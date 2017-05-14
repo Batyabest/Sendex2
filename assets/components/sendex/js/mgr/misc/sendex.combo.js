@@ -4,27 +4,23 @@ Sendex.combo.User = function(config) {
 		name: 'user_id'
 		,fieldLabel: _('sendex_subscriber')
 		,hiddenName: config.name || 'user_id'
-		,displayField: 'username'
+		,displayField: 'email'
 		,valueField: 'id'
 		,anchor: '99%'
-		,fields: ['username','id','fullname']
+		,fields: ['email','id']
 		,pageSize: 20
-		,url: MODx.modx23
-			? MODx.config.connector_url
-			: MODx.config.connectors_url + 'security/user.php'
+		,url: Sendex.config.connector_url
 		,editable: true
 		,allowBlank: true
 		,emptyText: _('sendex_select_user')
 		,baseParams: {
-			action: MODx.modx23
-				? 'security/user/getlist'
-				: 'getlist'
+			action: 'mgr/user/getlist'
 			,combo: 1
 		}
 		,tpl: new Ext.XTemplate(
 			'<tpl for=".">\
 				<div class="x-combo-list-item">\
-					<sup>({id})</sup> <strong>{username}</strong><br/>{fullname}\
+					<sup>({id})</sup> <strong>{email}</strong>\
 				</div>\
 			</tpl>'
 			,{compiled: true}
@@ -47,17 +43,13 @@ Sendex.combo.UserGroup = function(config) {
 		,anchor: '99%'
 		,fields: ['name','id','description']
 		,pageSize: 20
-		,url: MODx.modx23
-			? MODx.config.connector_url
-			: MODx.config.connectors_url + 'security/group.php'
+		,url: Sendex.config.connector_url
 		,editable: true
 		,allowBlank: true
 		,emptyText: _('sendex_select_group')
 		,baseParams: {
-			action: MODx.modx23
-				? 'security/group/getlist'
-				: 'getlist'
-			,combo: 0
+			action: 'mgr/usergroup/getlist'
+			,combo: 1
 		}
 		,tpl: new Ext.XTemplate(
 			'<tpl for=".">\

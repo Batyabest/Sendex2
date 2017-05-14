@@ -12,6 +12,13 @@ class sxSubscriberCreateProcessor extends modObjectCreateProcessor {
 	/**
 	 * @return bool
 	 */
+
+	public function process() {
+
+		print_r($this->getProperties());
+		die();
+	}
+
 	public function beforeSet() {
 
 		$required = array('user_id', 'newsletter_id');
@@ -25,8 +32,9 @@ class sxSubscriberCreateProcessor extends modObjectCreateProcessor {
 			return $this->modx->lexicon('sendex_subscriber_err_save');
 		}
 
-		/** @var modUserProfile $profile */
-		if ($profile = $this->modx->getObject('modUserProfile', array('internalKey' => $this->getProperty('user_id')))) {
+		/** @var sxUser $profile */
+		if ($profile = $this->modx->getObject('sxUser', array('id' => $this->getProperty('id')))) {
+			print_r($profile);
 			$email = $profile->get('email');
 			if (empty($email) || strpos($email, '@') === false) {
 				return $this->modx->lexicon('sendex_subscriber_err_email');

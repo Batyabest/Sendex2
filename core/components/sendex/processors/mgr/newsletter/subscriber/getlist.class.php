@@ -14,13 +14,23 @@ class sxSubscriberGetListProcessor extends modObjectGetListProcessor {
 	 *
 	 * @return xPDOQuery
 	 */
-	public function prepareQueryBeforeCount(xPDOQuery $c) {
+	/*public function prepareQueryBeforeCount(xPDOQuery $c) {
 		$c->where(array('newsletter_id' => $this->getProperty('newsletter_id')));
 		$c->leftJoin('modUser', 'modUser', 'sxSubscriber.user_id = modUser.id');
 		$c->leftJoin('modUserProfile', 'modUserProfile', 'sxSubscriber.user_id = modUserProfile.internalKey');
 
 		$c->select($this->modx->getSelectColumns($this->classKey, $this->classKey));
 		$c->select('modUser.username, modUserProfile.fullname');
+
+		return $c;
+	}*/
+
+	public function prepareQueryBeforeCount(xPDOQuery $c) {
+		$c->where(array('newsletter_id' => $this->getProperty('newsletter_id')));
+		$c->leftJoin('sxUser', 'sxUser', 'sxSubscriber.user_id = sxUser.id');
+
+		$c->select($this->modx->getSelectColumns($this->classKey, $this->classKey));
+		$c->select('sxUser.email');
 
 		return $c;
 	}

@@ -18,6 +18,7 @@ class sxQueueAddProcessor extends modProcessor {
 
 		/** @var sxNewsletter $newsletter */
 		$result = $newsletter->addQueues();
+
 		if ($result !== true) {
 			return $this->failure($result);
 		}

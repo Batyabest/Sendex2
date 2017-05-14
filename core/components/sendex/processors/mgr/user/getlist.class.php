@@ -28,23 +28,11 @@ class sxUserGetListProcessor extends modObjectGetListProcessor {
 		// И добавляем псевдоним и имя
 		$c->select('sxUserGroup.name');
 
-		$c->prepare();
-		$this->modx->log(1 , print_r('=========' ,1));
-		$this->modx->log(1 , print_r($c->toSQL() ,1));
+		// Проверяем корректность сформированного запроса
 
-		/*$c->innerJoin('sxUserGroup', 'sxUserGroup', 'sxUserGroup.id = sxUser.usergroup_id');
-		$c->select($this->modx->getSelectColumns('sxUser', 'sxUser'));
-		$c->select('sxUserGroup.name as group_name');
-
-		$c->prepare();
-		$this->modx->log(1, print_r('=========', 1));
-		$this->modx->log(1, print_r($c->toSQL(), 1));
-
-		if ($group_name = $this->getProperty('group_name')) {
-			if (!empty($group_name)) {
-				$c->where(array('sxUser.usergroup_id' => $group_name));
-			}
-		}*/
+		//$c->prepare();
+		//$this->modx->log(1 , print_r('=========' ,1));
+		//$this->modx->log(1 , print_r($c->toSQL() ,1));
 
 		/*if ($query = $this->getProperty('query')) {
 			$c->where(array(

@@ -357,15 +357,13 @@ Sendex.grid.NewsletterSubscribers = function(config) {
 			action: 'mgr/newsletter/subscriber/getlist'
 			,newsletter_id: config.record.id
 		}
-		,fields: ['id','username','fullname','email','actions']
+		,fields: ['id','email','actions']
 		,autoHeight: true
 		,paging: true
 		,remoteSort: true
 		,sm: this.sm
 		,columns: [
 			{header: _('sendex_subscriber_id'), sortable: true, dataIndex: 'id',width: 50}
-			,{header: _('sendex_subscriber_username'), sortable: true, dataIndex: 'username',width: 100}
-			,{header: _('sendex_subscriber_fullname'), sortable: true, dataIndex: 'fullname',width: 100}
 			,{header: _('sendex_subscriber_email'), sortable: true, dataIndex: 'email',width: 100}
 			,{header: '', dataIndex: 'actions',width: 50,renderer: Sendex.utils.renderActions, id: 'actions'}
 		]

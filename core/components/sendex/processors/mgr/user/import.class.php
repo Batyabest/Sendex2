@@ -44,7 +44,26 @@ class sxUserCreateProcessor extends modObjectCreateProcessor {
 
 	public function beforeSet() {
 
-		$required = array('email', 'usergroup_id');
+
+		$path = $this->modx->getOption('base_path');
+	//	$import_source = $this->getProperty('import_source');
+		$file_dir = $path . $this->getProperty('import_source'); // Путь к файлу
+
+	//	print_r($file_dir);
+	//	print_r('=======');
+
+		//die();
+
+		$file = file_get_contents($file_dir);
+		$lines = explode(PHP_EOL, $file);
+		//$array = array();
+		foreach ($lines as $key => $value) {
+			//print_r($key = $value);
+			$this->setProperty('email', $value);
+			return true;
+		}
+
+		/*$required = array('import_source', 'usergroup_id');
 		foreach ($required as $tmp) {
 			if (!$this->getProperty($tmp)) {
 				$this->addFieldError($tmp, $this->modx->lexicon('field_required'));
@@ -53,14 +72,7 @@ class sxUserCreateProcessor extends modObjectCreateProcessor {
 
 		if ($this->hasErrors()) {
 			return false;
-		}
-
-		$unique = array('email');
-		foreach ($unique as $tmp) {
-			if ($this->modx->getCount($this->classKey, array('email' => $this->getProperty($tmp)))) {
-				$this->addFieldError($tmp, $this->modx->lexicon('sendex_newsletter_err_ae'));
-			}
-		}
+		}*/
 
 		return !$this->hasErrors();
 	}
