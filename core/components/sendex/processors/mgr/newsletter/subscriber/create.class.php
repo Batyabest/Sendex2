@@ -13,11 +13,11 @@ class sxSubscriberCreateProcessor extends modObjectCreateProcessor {
 	 * @return bool
 	 */
 
-	public function process() {
+	/*public function process() {
 
 		print_r($this->getProperties());
 		die();
-	}
+	}*/
 
 	public function beforeSet() {
 
@@ -33,8 +33,8 @@ class sxSubscriberCreateProcessor extends modObjectCreateProcessor {
 		}
 
 		/** @var sxUser $profile */
-		if ($profile = $this->modx->getObject('sxUser', array('id' => $this->getProperty('id')))) {
-			print_r($profile);
+		if ($profile = $this->modx->getObject('sxUser', $this->getProperty('user_id'))) {
+
 			$email = $profile->get('email');
 			if (empty($email) || strpos($email, '@') === false) {
 				return $this->modx->lexicon('sendex_subscriber_err_email');
