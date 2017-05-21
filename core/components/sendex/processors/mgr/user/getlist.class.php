@@ -34,12 +34,12 @@ class sxUserGetListProcessor extends modObjectGetListProcessor {
 		//$this->modx->log(1 , print_r('=========' ,1));
 		//$this->modx->log(1 , print_r($c->toSQL() ,1));
 
-		/*if ($query = $this->getProperty('query')) {
+		if ($query = $this->getProperty('query')) {
 			$c->where(array(
-				'email:LIKE' => "%$query%",
-				'OR:group:LIKE' => "%$query%"
+				'email:LIKE' => "%$query%"/*,
+				'OR:group:LIKE' => "%$query%"*/
 			));
-		}*/
+		}
 
 		return $c;
 	}

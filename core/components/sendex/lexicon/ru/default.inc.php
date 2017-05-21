@@ -139,3 +139,4 @@ $_lang['sendex_user_group_description'] = 'Описание группы';
 $_lang['sendex_user_group_btn_create'] = 'Добавить группу пользователей';
 
 $_lang['sendex_user_group_create'] = 'Добавить пользователя';
+$_lang['sendex_user_search'] = 'Поиск';

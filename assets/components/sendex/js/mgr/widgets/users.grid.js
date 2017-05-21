@@ -1,5 +1,8 @@
 Sendex.grid.Users = function(config) {
 	config = config || {};
+	if (!config.id) {
+		config.id = 'sendex_user_list';
+	}
 	this.sm = new Ext.grid.CheckboxSelectionModel();
 
 	Ext.applyIf(config,{
@@ -28,6 +31,28 @@ Sendex.grid.Users = function(config) {
 			text: '<i class="' + (MODx.modx23 ? 'icon icon-upload-alt' : 'fa fa-upload') + '"></i> ' + _('sendex_import_user_btn_create'),
 			handler: this.importUser,
 			scope: this
+		}, '->', {
+			xtype: 'textfield',
+			name: 'query',
+			width: 200,
+			id: config.id + '-search-field',
+			emptyText: _('sendex_user_search'),
+			listeners: {
+				render: {
+					fn: function (tf) {
+						tf.getEl().addKeyListener(Ext.EventObject.ENTER, function () {
+							this._doSearch(tf);
+						}, this);
+					}, scope: this
+				}
+			}
+		}, {
+			xtype: 'button',
+			id: config.id + '-search-clear',
+			text: '<i class="icon icon-times"></i>',
+			listeners: {
+				click: {fn: this._clearSearch, scope: this}
+			}
 		}
 		]
 		/*
@@ -185,6 +210,18 @@ Ext.extend(Sendex.grid.Users,MODx.grid.Grid, {
 		}
 
 		return ids;
+	},
+	_doSearch: function (tf, nv, ov) {
+		this.getStore().baseParams.query = tf.getValue();
+		this.getBottomToolbar().changePage(1);
+		this.refresh();
+	},
+
+	_clearSearch: function (btn, e) {
+		this.getStore().baseParams.query = '';
+		Ext.getCmp(this.config.id + '-search-field').setValue('');
+		this.getBottomToolbar().changePage(1);
+		this.refresh();
 	}
 
 });
