@@ -133,3 +133,30 @@ Sendex.combo.UserGroupSx = function(config) {
 };
 Ext.extend(Sendex.combo.UserGroupSx,MODx.combo.ComboBox);
 Ext.reg('sendex-combo-usergroupsx',Sendex.combo.UserGroupSx);
+
+MODx.combo.Resource = function(config){
+	config = config || {};
+	Ext.applyIf(config,{
+		id: 'modx-combo-resource'
+		,name: 'resourceID'
+		,hiddenName: 'resourceID'
+		,displayField: 'pagetitle'
+		,valueField: 'id'
+		,mode: 'remote'
+		,fields: ['id','pagetitle']
+		,forceSelection: true
+		,editable: false
+		,enableKeyEvents: true
+		,pageSize: 20
+		,url: '/core/model/modx/processors/resource/index.php'
+		,baseParams: {
+			action: 'getList'
+			,showNone: true
+		}
+	});
+	MODx.combo.Resource.superclass.constructor.call(this, config);
+};
+Ext.extend(MODx.combo.Resource,MODx.combo.ComboBox);
+Ext.reg('modx-combo-resource',MODx.combo.Resource);
+
+

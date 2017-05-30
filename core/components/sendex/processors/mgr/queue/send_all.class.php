@@ -13,6 +13,7 @@ class sxQueueSendAllProcessor extends modProcessor {
 		/** @var sxQueue $queue */
 		foreach ($queues as $queue) {
 			$result = $queue->send();
+			sleep(2);
 			if ($result !== true) {
 				return $this->failure($result);
 			}
