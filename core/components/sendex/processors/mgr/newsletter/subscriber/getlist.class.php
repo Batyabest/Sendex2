@@ -30,9 +30,16 @@ class sxSubscriberGetListProcessor extends modObjectGetListProcessor {
 		$c->leftJoin('sxUser', 'sxUser', 'sxSubscriber.user_id = sxUser.id');
 
 		$c->select($this->modx->getSelectColumns($this->classKey, $this->classKey));
+		$c->where(array('sxUser.status' => 1 )); // Данное условие позволяет выбрать в окне подписки только тех пользователей, которых статус 1. А мне нужно даже не дать их добавить...
 		$c->select('sxUser.email');
+		// Проверяем корректность сформированного запроса
 
+		$c->prepare();
+		$this->modx->log(1 , print_r('=========' ,1));
+		$this->modx->log(1 , print_r($c->toSQL() ,1));
 		return $c;
+
+
 	}
 
 

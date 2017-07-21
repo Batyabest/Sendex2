@@ -11,23 +11,24 @@ if ($object->xpdo) {
 
 			$manager = $modx->getManager();
 			$objects = array(
-				'sxNewsletter',
+				'sxUnsubscribeQuestion',
 				'sxSubscriber',
 				'sxQueue',
 				'sxUser',
 				'sxUserGroup',
+				'sxUnsubscribeQuestion',
 			);
 			foreach ($objects as $tmp) {
 				$manager->createObjectContainer($tmp);
 			}
 
 
-			/*$level = $modx->getLogLevel();
+			$level = $modx->getLogLevel();
 			$modx->setLogLevel(xPDO::LOG_LEVEL_FATAL);
 
-			$manager->addField('sxUser', 'usergroup_id');
 
-			$modx->setLogLevel($level);*/
+
+			$modx->setLogLevel($level);
 
 			break;
 

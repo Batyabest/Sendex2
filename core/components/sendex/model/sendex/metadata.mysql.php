@@ -8,5 +8,6 @@ $xpdo_meta_map = array (
     2 => 'sxQueue',
     3 => 'sxUser',
     4 => 'sxUserGroup',
+    5 => 'sxUnsubscribeQuestion',
   ),
 );

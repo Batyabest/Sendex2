@@ -1,5 +1,5 @@
 <form action="" method="post">
-	<p>
+	<p>222[[+subscriber.code]]
 		[[%sendex_subscribe_intro?name=`[[+name]]`]]
 		<small>[[+description]]</small>
 	</p>

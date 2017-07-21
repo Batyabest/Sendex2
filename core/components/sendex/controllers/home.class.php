@@ -31,6 +31,7 @@ class SendexHomeManagerController extends SendexMainController {
 		$this->addJavascript($this->Sendex->config['jsUrl'] . 'mgr/widgets/queues.grid.js');
 		$this->addJavascript($this->Sendex->config['jsUrl'] . 'mgr/widgets/users.grid.js');
 		$this->addJavascript($this->Sendex->config['jsUrl'] . 'mgr/widgets/usersgroup.grid.js');
+		$this->addJavascript($this->Sendex->config['jsUrl'] . 'mgr/widgets/unsubscribes.grid.js');
 		$this->addJavascript($this->Sendex->config['jsUrl'] . 'mgr/widgets/newsletters.grid.js');
 		$this->addJavascript($this->Sendex->config['jsUrl'] . 'mgr/widgets/home.panel.js');
 		$this->addJavascript($this->Sendex->config['jsUrl'] . 'mgr/sections/home.js');

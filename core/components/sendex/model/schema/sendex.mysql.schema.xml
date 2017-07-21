@@ -95,4 +95,12 @@
 
 	</object>
 
+
+	<object class="sxUnsubscribeQuestion" table="sendex_unsubscribe_question" extends="xPDOSimpleObject">
+
+		<field key="question" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+		<field key="description" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+
+	</object>
+
 </model>

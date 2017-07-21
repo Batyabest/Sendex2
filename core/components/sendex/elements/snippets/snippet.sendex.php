@@ -32,6 +32,7 @@ if ($modx->user->isAuthenticated($modx->context->key)) {
 
 $isAuthenticated = $modx->user->isAuthenticated($modx->context->key);
 
+
 if (!empty($_REQUEST['sx_action'])) {
 	$isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest';
 

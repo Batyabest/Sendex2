@@ -140,3 +140,15 @@ $_lang['sendex_user_group_btn_create'] = 'Добавить группу поль
 
 $_lang['sendex_user_group_create'] = 'Добавить пользователя';
 $_lang['sendex_user_search'] = 'Поиск';
+
+
+
+
+$_lang['sendex_unsubscribe_question'] = 'Список вопросов для отписки';
+$_lang['sendex_unsubscribe_question_intro'] = 'Здесь вы можете добавить вопросы для отписки';
+$_lang['sendex_unsubscribe_question_id'] = 'ID';
+$_lang['sendex_unsubscribe_question_question'] = 'Вопрос';
+$_lang['sendex_unsubscribe_question_description'] = 'Описание вопроса';
+
+$_lang['sendex_unsubscribe_question_create'] = 'Добавить вопрос';
+$_lang['sendex_unsubscribe_question_search'] = 'Поиск вопросов';

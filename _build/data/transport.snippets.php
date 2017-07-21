@@ -7,6 +7,14 @@ $tmp = array(
 		'file' => 'sendex',
 		'description' => '',
 	),
+	'unSubscribe' => array(
+		'file' => 'unsubscribe',
+		'description' => 'Отписка от подписки :)',
+	),
+	'AjaxScribe' => array(
+		'file' => 'ajaxscribe',
+		'description' => 'Обработчик отписки :)',
+	),
 );
 
 foreach ($tmp as $k => $v) {

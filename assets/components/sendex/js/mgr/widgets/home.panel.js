@@ -65,6 +65,18 @@ Sendex.panel.Home = function(config) {
 					,cls: 'main-wrapper'
 					,preventRender: true
 				}]
+			},{
+				title: _('sendex_unsubscribe_question')
+				,layout: 'anchor'
+				,items: [{
+					html: _('sendex_unsubscribe_question_intro')
+					,border: false
+					,bodyCssClass: 'panel-desc'
+				},{
+					xtype: 'sendex-grid-unsubscribe_question'
+					,cls: 'main-wrapper'
+					,preventRender: true
+				}]
 			}]
 		}]
 	});

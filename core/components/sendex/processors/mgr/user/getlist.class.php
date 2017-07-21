@@ -25,6 +25,7 @@ class sxUserGetListProcessor extends modObjectGetListProcessor {
 
 		// Выбираем поля подписчика
 		$c->select($this->modx->getSelectColumns($this->classKey, $this->classKey));
+		$c->where(array('sxUser.status' => 1 ));
 		// И добавляем псевдоним и имя
 		$c->select('sxUserGroup.name');
 
