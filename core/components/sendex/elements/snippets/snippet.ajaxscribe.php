@@ -1,4 +1,6 @@
 <?php
+$Sendex = $modx->getService('sendex','Sendex',$modx->getOption('sendex_core_path',null,$modx->getOption('core_path').'components/sendex/').'model/sendex/',$scriptProperties);
+if (!($Sendex instanceof Sendex)) return '';
 if (isset($_POST["id"]) && isset($_POST["email"]) ) {
 
 		if ($user = $this->xpdo->getObject('sxUser', array('id' => $_POST["id"]))) {
@@ -13,5 +15,5 @@ if (isset($_POST["id"]) && isset($_POST["email"]) ) {
 		);
 
 		// Переводим массив в JSON
-		print_r(json_encode($result));
+		print "Ваш email: $result[email] успешно отписан от рассылки";
 }
